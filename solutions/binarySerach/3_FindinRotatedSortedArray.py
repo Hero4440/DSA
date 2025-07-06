@@ -1,0 +1,24 @@
+# https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
+# Suppose an array of length n sorted in ascending order is rotated between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
+
+# [4,5,6,7,0,1,2] if it was rotated 4 times.
+# [0,1,2,4,5,6,7] if it was rotated 7 times.
+# Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0,  len(nums) - 1
+        res = nums[l]
+        while l <= r:
+            if nums[l] <= nums[r]:
+                res = min(res, nums[l])
+                break
+            m = (l + r)//2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m+1
+            else:
+                r = m -1
+        return res
+                
+        
